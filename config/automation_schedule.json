@@ -1,0 +1,27 @@
+{
+  "timezone": "Asia/Seoul",
+  "schedule": [
+    {
+      "name": "weekday_morning_run",
+      "days": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ],
+      "time": "07:30"
+    },
+    {
+      "name": "weekday_evening_run",
+      "days": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ],
+      "time": "19:30"
+    }
+  ]
+}

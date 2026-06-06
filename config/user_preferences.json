@@ -1,0 +1,33 @@
+{
+  "preferred_regions": [
+    "대구",
+    "경산",
+    "칠곡",
+    "성주",
+    "영천",
+    "구미"
+  ],
+  "monitor_regions": [
+    "서울"
+  ],
+  "target_status_for_review": [
+    "APPROVED",
+    "HOLD"
+  ],
+  "review_cooldown_days": 2,
+  "max_daily_review_count": 10,
+  "min_preferred_slots": 5,
+  "analysis_scoring": {
+    "weights": {
+      "rights": 0.35,
+      "location": 0.30,
+      "repair": 0.15,
+      "liquidity": 0.20
+    },
+    "location_base": {
+      "PREFERRED": 92,
+      "MONITOR": 78,
+      "OTHER": 58
+    }
+  }
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "candidate_id": "AUC-2026-001",
+    "location": "서울시 강북구",
+    "property_type": "apartment",
+    "estimated_sale_price": 20500000,
+    "expected_resale_price": 30000000,
+    "repair_cost": 900000,
+    "acquisition_cost": 1300000,
+    "other_cost": 500000,
+    "reserve_cash": 3500000,
+    "rights_clarity": "CLEAR",
+    "eviction_difficulty": "LOW",
+    "site_visit_done": true,
+    "documents_ready": true,
+    "funding_plan_ready": true
+  },
+  {
+    "candidate_id": "AUC-2026-002",
+    "location": "경기도 부천시",
+    "property_type": "villa",
+    "estimated_sale_price": 19000000,
+    "expected_resale_price": 26000000,
+    "repair_cost": 1300000,
+    "acquisition_cost": 1200000,
+    "other_cost": 500000,
+    "reserve_cash": 3200000,
+    "rights_clarity": "CLEAR",
+    "eviction_difficulty": "MEDIUM",
+    "site_visit_done": false,
+    "documents_ready": true,
+    "funding_plan_ready": true
+  },
+  {
+    "candidate_id": "AUC-2026-003",
+    "location": "인천시 미추홀구",
+    "property_type": "officetel",
+    "estimated_sale_price": 24000000,
+    "expected_resale_price": 29000000,
+    "repair_cost": 2000000,
+    "acquisition_cost": 1900000,
+    "other_cost": 700000,
+    "reserve_cash": 3200000,
+    "rights_clarity": "UNCLEAR",
+    "eviction_difficulty": "HIGH",
+    "site_visit_done": true,
+    "documents_ready": true,
+    "funding_plan_ready": true
+  }
+]

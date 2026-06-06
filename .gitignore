@@ -1,0 +1,17 @@
+.env
+.env*
+__pycache__/
+*.py[cod]
+logs/
+data/reports/
+data/candidates/latest_candidates.json
+data/decisions/*.json
+data/raw/daegu_cases.json
+crawler/data/
+crawler/debug*.png
+results/
+.DS_Store
+Thumbs.db
+.venv/
+*.db
+.pycache/

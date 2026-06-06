@@ -1,0 +1,96 @@
+{
+  "version": "1.0.0",
+  "profile": "small_capital_conservative",
+  "gates": [
+    {
+      "id": "gate_budget",
+      "name": "예산 적합성",
+      "type": "hard_reject",
+      "rules": [
+        {
+          "field": "total_cost",
+          "operator": "<=",
+          "value": 200000000,
+          "reason_code": "BUDGET_EXCEEDED"
+        },
+        {
+          "field": "reserve_cash",
+          "operator": ">=",
+          "value": 3000000,
+          "reason_code": "RESERVE_TOO_LOW"
+        }
+      ]
+    },
+    {
+      "id": "gate_rights_risk",
+      "name": "권리관계 단순성",
+      "type": "hard_reject",
+      "rules": [
+        {
+          "field": "rights_clarity",
+          "operator": "==",
+          "value": "CLEAR",
+          "reason_code": "RIGHTS_UNCLEAR"
+        },
+        {
+          "field": "eviction_difficulty",
+          "operator": "in",
+          "value": [
+            "LOW",
+            "MEDIUM"
+          ],
+          "reason_code": "EVICTION_RISK_HIGH"
+        }
+      ]
+    },
+    {
+      "id": "gate_margin",
+      "name": "수익 안전마진",
+      "type": "hard_reject",
+      "rules": [
+        {
+          "field": "expected_margin_rate",
+          "operator": ">=",
+          "value": 0.12,
+          "reason_code": "MARGIN_TOO_LOW"
+        },
+        {
+          "field": "max_bid",
+          "operator": ">",
+          "value": 0,
+          "reason_code": "MAX_BID_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "gate_execution",
+      "name": "실행 가능성",
+      "type": "hold",
+      "rules": [
+        {
+          "field": "site_visit_done",
+          "operator": "==",
+          "value": true,
+          "reason_code": "SITE_VISIT_MISSING"
+        },
+        {
+          "field": "documents_ready",
+          "operator": "==",
+          "value": true,
+          "reason_code": "DOCUMENTS_MISSING"
+        },
+        {
+          "field": "funding_plan_ready",
+          "operator": "==",
+          "value": true,
+          "reason_code": "FUNDING_PLAN_MISSING"
+        }
+      ]
+    }
+  ],
+  "outcome_priority": [
+    "REJECT",
+    "HOLD",
+    "APPROVED"
+  ]
+}
