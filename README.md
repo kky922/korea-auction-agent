@@ -1,44 +1,60 @@
-# 한국 법원경매 소액투자 에이전트 시스템
+# Korea Auction Agent
 
-이 저장소는 학습 중심의 경매 입문자가 보수적 기준으로 물건을 선별하고, 실전 입찰 전까지 체계적으로 준비할 수 있도록 만든 에이전트 운영 템플릿이다.
+한국 법원 부동산 경매 후보를 보수적인 기준으로 계산하고 검토 순서를 만드는
+학습용 분석 파이프라인입니다. 자동 입찰은 수행하지 않으며 최종 판단은 사용자가 합니다.
 
-## 목표
-- 한국 법원 부동산 경매를 기준으로 학습-분석-실행-복기를 하나의 흐름으로 관리한다.
-- 총 투자금 3천만원 이하, 보수적 성향 투자자 기준을 기본 정책으로 사용한다.
-- 자동화는 추천/차단 중심으로 수행하고 최종 의사결정은 투자자가 승인한다.
+## 기능
 
-## 디렉터리 구조
-- `policy/`: 투자 정책과 게이트 규칙
-- `agents/`: 담당 에이전트 명세
-- `src/`: 최소 실행 프로토타입 코드
-- `data/`: 샘플 후보 데이터, 분석 결과 저장 위치
-- `results/`: 주간 복기 및 실전 기록
+- 예상 총비용, 기대 수익, 최대 입찰가 계산
+- 권리관계·수익률·준비 상태에 따른 `APPROVED`, `HOLD`, `REJECT` 게이트
+- 선호 지역과 검토 이력을 반영한 후보 우선순위
+- 분석 카드, 결정 목록, 후속 조치 리포트 생성
+- 선택적 공공데이터·등기·Telegram 연동
 
-## 빠른 시작
-1. 정책 문서를 먼저 읽는다.
-   - `policy/investment_policy.md`
-   - `policy/decision_gates.md`
-2. 샘플 데이터로 파이프라인을 실행한다.
-   - `python3 src/pipeline.py`
-3. 생성된 리포트를 확인한다.
-   - `data/reports/latest_run_report.json`
-   - `results/weekly_reviews/latest_review.md`
+## 설치
 
-## 주의
-- 본 프로젝트는 투자 판단 보조 시스템이며 법률/세무 자문을 대체하지 않는다.
-- 권리분석이 불확실한 건은 기본적으로 제외하는 보수형 정책을 따른다.
-# 부동산 경매 스터디
+```bash
+git clone https://github.com/kky922/korea-auction-agent.git
+cd korea-auction-agent
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-## 폴더 구조
+## 설정
 
-- `concepts/` — 핵심 개념 정리 (말소기준권리, 배당, 명도 등)
-- `cases/` — 실제 물건 분석 연습
-- `tools/` — AI 자동화 도구 (크롤러, 수익률 계산기 등)
-- `notes/` — 메모, 아이디어
+샘플 실행에는 API 키가 필요하지 않습니다. 지역과 검토 기준은
+`config/user_preferences.json`, 판정 기준은 `policy/decision_gates.json`에서 설정합니다.
 
-## 학습 순서
+외부 연동을 사용할 때만 `.env`에 `PUBLIC_DATA_API_KEY`, `IROS_API_KEY`,
+`AUCTION_TELEGRAM_BOT_TOKEN`, `AUCTION_TELEGRAM_CHAT_ID`를 추가합니다.
 
-1. concepts/ 개념 정리
-2. cases/ 가상 물건 분석 연습
-3. tools/ 도구 제작
-4. 소액 실전
+## 실행
+
+```bash
+# 저장소에 포함된 가상 후보 데이터 분석
+python3 src/pipeline.py data/candidates/sample_candidates.json
+
+# 결과 확인
+cat data/reports/latest_run_report.json
+
+# 웹 대시보드
+streamlit run ui/dashboard.py
+```
+
+생성 파일은 `data/reports/`와 `results/`에 저장되며 Git에서 제외됩니다.
+
+## 테스트
+
+```bash
+pytest -q
+```
+
+## 주의사항
+
+이 프로젝트는 학습용 투자 판단 보조 도구이며 투자·법률·세무 자문이 아닙니다.
+실제 입찰 전 등기, 임차인, 배당, 현장 상태와 자금 계획을 전문가와 직접 확인하세요.
+
+## 라이선스
+
+MIT

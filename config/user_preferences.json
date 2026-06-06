@@ -1,14 +1,10 @@
 {
   "preferred_regions": [
-    "대구",
-    "경산",
-    "칠곡",
-    "성주",
-    "영천",
-    "구미"
+    "서울",
+    "경기"
   ],
   "monitor_regions": [
-    "서울"
+    "인천"
   ],
   "target_status_for_review": [
     "APPROVED",
